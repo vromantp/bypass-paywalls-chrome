@@ -197,7 +197,7 @@ if (matchDomain('elmercurio.com')) {
     const overlay = document.querySelector('aside[data-temptation-position="ARTICLE_BOTTOM"]');
     const subscribe = document.querySelector('aside[data-temptation-position="ARTICLE_INLINE"]');
     const inlineMiddle = document.querySelector('aside[data-temptation-position="ARTICLE_INLINE_MIDDLE"]');
-	  const topAd = document.getElementsByClassName('top1-container')[0];
+    const topAd = document.getElementsByClassName('top1-container')[0];
     removeDOMElement(overlay, subscribe, inlineMiddle, topAd);
     const interAds = document.querySelectorAll('[id*="article_paragraph"]')
     for (const interAd of interAds) {
