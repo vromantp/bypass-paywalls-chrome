@@ -193,13 +193,21 @@ if (matchDomain('elmercurio.com')) {
     removeDOMElement(plista);
   });
 } else if (matchDomain(['parool.nl', 'trouw.nl', 'volkskrant.nl', 'demorgen.be', 'humo.be'])) {
-  document.addEventListener('DOMContentLoaded', () => {
-    const topBanner = document.querySelector('div[data-temptation-position="PAGE_TOP"]');
-    const paywall = document.querySelector('div[data-temptation-position="ARTICLE_BOTTOM"]');
-    const hiddenSection = document.querySelector('div[data-temptation-position="ARTICLE_INLINE"]');
-    const overlay = document.querySelector('div[data-temptation-position="PAGE_BOTTOM"]');
-    removeDOMElement(topBanner, paywall, hiddenSection, overlay);
-  });
+  setTimeout(function () {
+    const overlay = document.querySelector('aside[data-temptation-position="ARTICLE_BOTTOM"]');
+    const subscribe = document.querySelector('aside[data-temptation-position="ARTICLE_INLINE"]');
+    const inlineMiddle = document.querySelector('aside[data-temptation-position="ARTICLE_INLINE_MIDDLE"]');
+    const topAd = document.getElementsByClassName('top1-container')[0];
+    removeDOMElement(overlay, subscribe, inlineMiddle, topAd);
+    const interAds = document.querySelectorAll('[id*="article_paragraph"]')
+    for (const interAd of interAds) {
+      removeDOMElement(interAd);
+    }
+    const hiddenContentDivs = document.querySelectorAll('div[class="paywall"]');
+    for (const hiddenContentDiv of hiddenContentDivs) {
+      hiddenContentDiv.setAttribute('style', 'display:block;');
+    }
+  }, 300); // Delay (in milliseconds)
 } else if (matchDomain('firstthings.com')) {
   const paywall = document.getElementsByClassName('paywall')[0];
   removeDOMElement(paywall);
